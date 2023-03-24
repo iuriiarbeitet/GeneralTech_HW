@@ -1,0 +1,33 @@
+Описание задания.
+
+ 1 уровень сложности: Напишите запрос, который создаст две таблицы для:
+
+
+реакций (на стримы);
+
+create table if not exists reactions (
+	reaction_id integer primary key auto_increment,
+	user_id integer,
+	stream_id integer,
+	created_at datetime default current_timestamp,
+	value integer check (value between 1 and 5),
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (stream_id) REFERENCES streams(stream_id)
+	);
+
+донатов (пожертвований).
+
+create table if not exists donations (
+	donation_id integer primary key auto_increment,
+	created_at datetime default current_timestamp,
+	donator_id integer,
+	stream_id integer,
+	amount decimal(10, 2) CHECK(amount > 0),
+	FOREIGN KEY (donator_id) REFERENCES users(user_id),
+	FOREIGN KEY (stream_id) REFERENCES streams(stream_id)
+	);
+
+
+
+
+
