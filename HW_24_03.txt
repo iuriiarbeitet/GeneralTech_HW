@@ -1,0 +1,40 @@
+ 1 уровень сложности: В рамках БД 'platform' напишите следующие запросы
+
+(1) Вывести пользователей, у которых не укан email-адрес
+
+select * from users where e-mail is null;
+
+
+(2) Вывести незаблокированных пользователей из Китая
+
+select * from users where is_blocked = 0 AND country ='China';
+
+
+(3) Вывести стримы, авторы которых заблокированы
+
+SELECT *
+
+FROM streams
+JOIN users ON streams.user_id=users.user_id
+where users.is_blocked =1
+
+(4) Вывести три последних реакции (включая имя_пользователя)
+
+SELECT 
+reactions.reaction_id,
+reactions.stream_id,
+reactions.created_at,
+users.fullname AS reaction_author
+FROM reactions
+JOIN users ON reactions.user_id=users.user_id
+order by reaction_id desc
+limit 3
+
+
+(5) Вывести пожертвования заблокированных пользователей
+
+SELECT *
+	
+FROM donations
+JOIN users ON donations.donator_id=users.user_id
+where users.is_blocked =1
