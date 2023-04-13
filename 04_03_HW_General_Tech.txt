@@ -1,14 +1,29 @@
- 1 уровень сложности: (1) Описать связи между таблицами БД "песочница"
+(1) Описать связи между таблицами БД "песочница"
+
 
 (2) Вывести страны клиентов (БД platform)
+
+SELECT country FROM users
 
 
 (3) Вывести пользователей без пароля (БД platform)
 
+SELECT * FROM users
+where password is null
+
 
 (4) Вывести страны донаторов с максимальным и минимальным пожертвованиями (БД platform)
 
-
-Конспект занятия
-https://western-appeal-39b.notion.site/GenTech-Apr-3-2023-04929f8a938f4b1d8edc942bc0fa6373 
-
+(SELECT 
+	users.country
+FROM donations
+JOIN users ON donations.donator_id=users.user_id
+ORDER BY donations.amount DESC
+LIMIT 1)
+union
+(SELECT 
+	users.country
+FROM donations
+JOIN users ON donations.donator_id=users.user_id
+ORDER BY donations.amount 
+LIMIT 1)
