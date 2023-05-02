@@ -1,0 +1,12 @@
+В рамках БД "platform" напишите след/запросы:
+(1) ТОП-2 страны по сумме донатов
+(2) Вывести рейтинг для каждого незавершенного стрима
+(3) Вывести ТОП-1 донаторов (имя, сумма в долларах)
+(4) Вывести страны стримеров, у которых рейтинг ниже 2 
+(5) Вывести имена пользователей и сколько оценок за все время они поставили
+
+(1) SELECT country, SUM(amount) AS total_donations FROM donations GROUP BY country ORDER BY total_donations DESC LIMIT 2;
+(2) SELECT stream_id, RANK() OVER (ORDER BY viewers DESC) AS rating FROM streams WHERE end_time IS NULL;
+(3) SELECT username, SUM(amount) AS total_donations FROM donations GROUP BY username ORDER BY total_donations DESC LIMIT 1;
+(4) SELECT DISTINCT country FROM streams WHERE rating < 2;
+(5) SELECT username, COUNT(*) AS total_ratings FROM ratings GROUP BY username;
