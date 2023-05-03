@@ -1,0 +1,20 @@
+В рамках БД 'platform' написать след/запросы:
+
+
+Вывести количественное распределение оценок (реакций) по стриму №1.
+
+- SELECT reactions, COUNT(*) AS count
+FROM platform
+WHERE stream_id = 1
+GROUP BY reactions
+
+Вывести список стран, откуда идут пожертвования.
+
+-  SELECT DISTINCT Country FROM donations;
+
+Вывести сумму и ко-во всех полученных пожертвований стримером №1 
+
+-  SELECT SUM(amount), COUNT(*) FROM donations WHERE streamer_id = 1;
+
+
+
