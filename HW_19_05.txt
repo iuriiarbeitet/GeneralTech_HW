@@ -1,0 +1,26 @@
+ 1 уровень сложности:
+ 1. Завершить наполнение БД "webstore"
+
+В рамках БД "webstore" напишите след/запросы
+
+
+
+Добавить фильм с датой и временем 1 мая, 2023, 10:00:00.
+
+--> INSERT INTO films (title, release_date) VALUES ('Название фильма', '2023-05-01 10:00:00');
+
+
+
+Вывести билеты, купленные на определенную дату
+--> SELECT * FROM tickets WHERE purchase_date = '2023-05-01';
+
+
+
+Вывести информацию о покупке билетов. В какие дни недели продаж больше всего: названиеднянедели, ко-во_продаж
+
+--> SELECT DAYNAME(purchase_date) AS weekday, COUNT(*) AS sales_count
+	FROM tickets
+	GROUP BY weekday
+	ORDER BY sales_count DESC;
+
+
